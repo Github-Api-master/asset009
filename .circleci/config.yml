@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test:
     description: Run tests
-    working_directory: ~/project_name
+    working_directory: ~/asset009
     docker:
       - image: circleci/openjdk:8u222-node
     steps:
@@ -26,7 +26,7 @@ jobs:
           command: npm run build
   build:
     description: Build application
-    working_directory: ~/project_name
+    working_directory: ~/asset009
     docker:
       - image: circleci/openjdk:8u222-node
     steps:
@@ -66,9 +66,9 @@ jobs:
             -LocationPath ~/app \
             -Preset Default \
             -executepackagedependency \
-            -ReportPDF ~/app/report/project_name_scan_results.pdf
+            -ReportPDF ~/app/report/asset009_scan_results.pdf
       - store_artifacts:
-          path: ~/app/report/project_name_scan_results.pdf
+          path: ~/app/report/asset009_scan_results.pdf
   blackduck_scan:
     docker:
       - image: circleci/openjdk:8u222-node
@@ -92,7 +92,7 @@ jobs:
             --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING \
             --detect.npm.path=/usr/bin/npm \
             --detect.npm.node.path=/usr/bin/node \
-            --detect.project.name="project_name" \
+            --detect.project.name="asset009" \
             --detect.project.version.name="ver.$CIRCLE_BUILD_NUM.$COMMIT_ID" \
             --detect.risk.report.pdf=true \
             --detect.risk.report.pdf.path="~/app/report" \
